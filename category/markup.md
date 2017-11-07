@@ -1,6 +1,6 @@
 ---
 layout: category
-title: Markup
+title: Technologie Komponentowe
 ---
 
-Another sample category page.
+Ćwiczenia
