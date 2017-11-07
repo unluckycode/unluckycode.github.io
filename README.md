@@ -1,159 +1,144 @@
-# Simple Texture Jekyll Theme
+# Hydeout
 
-![Gem Version](https://img.shields.io/gem/v/jekyll-theme-simple-texture.svg)
+Hydeout updates the original [Hyde](https://github.com/poole/hyde)
+theme for [Jekyll](http://jekyllrb.com) 3.x and adds new functionality.
 
-Simple Texture is a gem-based responsive simple texture styled Jekyll theme for [Jekyll][Jekyll] 3.3 or above,
-which can also be forked as a boilerplate for older versions of Jekyll.
+![Desktop](/_screenshots/1.png?raw=true)
+<img alt="Mobile home page" src="/_screenshots/2.png?raw=true" width="300px" />
+<img alt="Mobile post page" src="/_screenshots/3.png?raw=true" width="300px" />
 
-## Demo
+### Usage
 
-- Starter-kit demo:
-<https://yizeng.github.io/jekyll-theme-simple-texture/>
-- My own personal blog: <http://yizeng.me/blog>
+Hydeout is available as the `jekyll-theme-hydeout` Ruby Gem.
+Add `gem "jekyll-theme-hydeout", "~> 3.4"` to your Gemfile and run
+`bundle install`.
 
-![Screenshot - Home](assets/images/screenshots/home.png)
+Hydeout uses pagination, so if you have an `index.md`, you'll need to swap
+it with an `index.html` that uses the `index` layout:
 
-![Screenshot - Blog](assets/images/screenshots/post.png)
+```
+---
+layout: index
+title: Home
+---
+```
 
-## Installation
+### Keep It Simple
 
-### As a Jekyll theme gem (Jekyll >= 3.3)
+In keeping with the original Hyde theme, Hydeout aims to keep the overall
+design lightweight and plugin-free. JavaScript is currently limited only
+to Disqus and Google Analytics (and is only loaded if you provide configuration
+variables).
 
-If you are creating a new website or blog,
-please follow the commands below first:
+Hydeout makes heavy use of Flexbox in its CSS. If Flexbox is not available,
+the CSS degrades into a single column layout.
 
-1. Install Jekyll and [Bunlder][Bunlder]
+### Customization
 
-       gem install jekyll bundler
+Hydeout replaces Hyde's class-based theming with the use
+of the following SASS variables:
 
-2. Create a new Jekyll app
+```scss
+$sidebar-bg-color: #202020 !default;
+$sidebar-sticky: true !default;
+$layout-reverse: false !default;
+$link-color: #268bd2 !default;
+```
 
-       jekyll new jekyllapp
+To override these variables, create your own `assets/css/main.scss` file.
+Define your own variables, then import in Hydeout's SCSS, like so:
 
-3. Enter the new directory
+```scss
+---
+# Jekyll needs front matter for SCSS files
+---
 
-       cd jekyllapp
+$sidebar-bg-color: #ac4142;
+$link-color: #ac4142;
+$sidebar-sticky: false;
+@import "hydeout";
+```
 
-4. Then follow the instructions below like existing Jekyll app.
+See the [_variables](_sass/hydeout/_variables.scss) file for other variables
+you can override.
 
-Then for existing Jekyll apps,
+You can see the full set of partials you can replace in the
+[`_includes`](_includes) folder, but there are a few worth noting:
 
-1. Install Bundler if haven't done so.
+* `_includes/copyright.html` - Insert your own copyright here.
 
-       gem install bundler
+* `_includes/custom-head.html` - Insert custom head tags (e.g. to load your
+  own stylesheets)
 
-1. Remove Jekyll auto-generated default pages `404.html`, `about.md` and `index.md` or any your custom layouts or existing theme files.
+* `_includes/custom-foot.html` - Insert custom elements at the end of the
+  body (e.g. for custom JS)
 
-1. Remove the existing `Gemfile.lock`.
+* `_includes/custom-nav-links.html` - Additional nav links to insert at the
+  end of the list of links in the sidebar.
 
-1. Download the respository [here](https://github.com/yizeng/jekyll-theme-simple-texture/archive/master.zip)
-and locate `starter-kit` folder,
-or download `starter-kit` folder directly [here](https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/yizeng/jekyll-theme-simple-texture/tree/master/starter-kit).
+  Pro-tip: The `nav`s in the sidebar are flexboxes. Use the `order` property
+  to order your links.
 
-1. Put everything in the `starter-kit` in the root directory,
-i.e. `jekyllapp` in this example.
+* `_includes/custom-icon-links.html`- Additional icon links to insert at the
+  end of the icon links at the bottom of the sidebar. You can use the `order`
+  property to re-order.
 
-1. Run `bundle install` to install dependencies.
+* `_includes/favicons.html` - Replace references to `favicon.ico` and
+  `favicon.png` with your own favicons references.
 
-1. Run Jekyll with `bundle exec jekyll serve`
+* `_includes/font-includes.html` - The Abril Fatface font used for the site
+  title is loaded here. If you're overriding that font in the CSS, be sure
+  to also remove the font load reference here.
 
-1. Hack away at <http://localhost:4000>!
+### New Features
 
-### As a fork
+* Hydeout adds a new tags page (accessible in the sidebar). Just create a
+  new page with the tags layout:
 
-1. Fork the repo [here](https://github.com/yizeng/jekyll-theme-simple-texture#fork-destination-box)
+  ```
+  ---
+  layout: tags
+  title: Tags
+  ---
+  ```
 
-2. Clone the repo just forked.
+* Hydeout adds a new "category" layout for dedicated category pages.
+  Category pages are automatically added to the sidebar. All other pages
+  must have `sidebar_link: true` in their front matter to show up in
+  the sidebar. To create a category page, use the `category` layout"
 
-       git clone git@github.com:[YOUR_USERNAME]/jekyll-theme-simple-texture.git
+  ```
+  ---
+  layout: category
+  title: My Category
+  ---
 
-3. Delete `starter-kit` folder and `jekyll-theme-simple-texture.gemspec` file (they're for people installing via gem)
+  Description of "My Category"
+  ```
 
-4. Install Bundler if haven't done so.
+* A simple redirect-to-Google search is available. Just create a page with
+  the `search` layout.
 
-       gem install bundler
+  ```
+  ---
+  layout: search
+  title: Google Search
+  ---
+  ```
 
-5. Update the `Gemfile` to look like the following:
+* Disqus integration is ready out of the box. Just add the following to
+  your config file:
 
-   ```ruby
-   source "https://rubygems.org"
+  ```yaml
+  disqus:
+    shortname: my-disqus-shortname
+  ```
 
-   gem 'jekyll', '= 3.5.2' # locked in to be consistent GitHub Pages.
+  If you don't want Disqus or want to use something else, override
+  `comments.html`.
 
-   group :jekyll_plugins do
-     gem 'jekyll-feed'
-     gem 'jekyll-redirect-from'
-     gem 'jekyll-seo-tag'
-     gem 'jekyll-sitemap'
-   end
-   ```
+* For Google Analytics support, define a `google_analytics` variable with
+  your property ID in your config file.
 
-6. Run `bundle install` to install dependencies.
-
-7. Run Jekyll with `bundle exec jekyll serve`
-
-8. Hack away at <http://localhost:4000>!
-
-## Contributing
-
-Bug reports and pull requests are welcome on GitHub at <https://github.com/yizeng/jekyll-theme-simple-texture>. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
-
-## Credits
-
-- [Jekyll][Jekyll]
-  + [jekyll-feed](https://github.com/jekyll/jekyll-feed)
-  + [jekyll-redirect-from](https://github.com/jekyll/jekyll-redirect-from)
-  + [jekyll-seo-tag](https://github.com/jekyll/jekyll-seo-tag)
-  + [jekyll-sitemap](https://github.com/jekyll/jekyll-sitemap)
-  + [Simple-Jekyll-Search](https://github.com/christian-fei/Simple-Jekyll-Search)
-  + [Jekyll-Bootstrap](http://jekyllbootstrap.com/)
-  + [theme-the-program](https://github.com/jekyllbootstrap/theme-the-program)
-
-- [Sass](http://sass-lang.com/)
-  + [Normalize.css](https://necolas.github.io/normalize.css/)
-  + [Animate.css](https://daneden.github.io/animate.css/)
-  + [Simple Icons](https://simpleicons.org/)
-  + [Noise Texture Generator](http://www.noisetexturegenerator.com/)
-- JavaScript
-  + [cdnjs](https://cdnjs.com/)
-  + [jQuery](https://jquery.com/)
-  + [fullPage.js](https://alvarotrigo.com/fullPage/)
-  + [pace.js](http://github.hubspot.com/pace/docs/welcome/)
-  + [Modernizr](https://modernizr.com/)
-  + [FancyBox](http://fancybox.net/)
-  + [unveil.js](http://luis-almeida.github.io/unveil/)
-- Fonts
-  + [Font Squirrel](https://www.fontsquirrel.com/)
-  + [Bitter](https://fonts.google.com/specimen/Bitter)
-  + [Junge](https://fonts.google.com/specimen/Junge)
-  + [Ubuntu Condensed](https://fonts.google.com/specimen/Ubuntu+Condensed)
-
-## License
-
-The theme is available as open source under the terms of the
-[MIT License](https://github.com/yizeng/jekyll-theme-simple-texture/blob/master/LICENSE).
-
-    MIT License
-
-    Copyright (c) 2017 Yi Zeng
-
-    Permission is hereby granted, free of charge, to any person obtaining a copy
-    of this software and associated documentation files (the "Software"), to deal
-    in the Software without restriction, including without limitation the rights
-    to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-    copies of the Software, and to permit persons to whom the Software is
-    furnished to do so, subject to the following conditions:
-
-    The above copyright notice and this permission notice shall be included in all
-    copies or substantial portions of the Software.
-
-    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-    SOFTWARE.
-
-[Jekyll]: http://jekyllrb.com/
-[Bunlder]: http://bundler.io/
+There's also a bunch of minor tweaks and adjustments throughout the
+theme. Hope this works for you!
