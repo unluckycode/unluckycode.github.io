@@ -1,65 +1,159 @@
-<p align="center">
-    <h2 align="center">Indigo Minimalist Jekyll Template - <a href="http://sergiokopplin.github.io/indigo/">Demo</a> · <a href="https://travis-ci.org/sergiokopplin/indigo"><img src="https://camo.githubusercontent.com/5393485b732749b3499264168fa8af60166071e8/68747470733a2f2f7472617669732d63692e6f72672f73657267696f6b6f70706c696e2f696e6469676f2e7376673f6272616e63683d67682d7061676573" alt="Build Status" data-canonical-src="https://travis-ci.org/sergiokopplin/indigo.svg?branch=gh-pages" style="max-width:100%;"></a></h2>
-</p>
+# Simple Texture Jekyll Theme
 
-<p align="center">This is a simple and minimalist template for Jekyll for those who likes to eat noodles.</p>
+![Gem Version](https://img.shields.io/gem/v/jekyll-theme-simple-texture.svg)
 
-***
+Simple Texture is a gem-based responsive simple texture styled Jekyll theme for [Jekyll][Jekyll] 3.3 or above,
+which can also be forked as a boilerplate for older versions of Jekyll.
 
-<p align="center">
-    <b><a href="README.md#what-has-inside">What has inside</a></b>
-    |
-    <b><a href="README.md#setup">Setup</a></b>
-    |
-    <b><a href="README.md#settings">Settings</a></b>
-    |
-    <b><a href="README.md#how-to">How to</a></b>
-</p>
+## Demo
 
-<p align="center">
-    <img src="https://raw.githubusercontent.com/sergiokopplin/indigo/gh-pages/assets/screen-shot.png" />
-</p>
+- Starter-kit demo:
+<https://yizeng.github.io/jekyll-theme-simple-texture/>
+- My own personal blog: <http://yizeng.me/blog>
 
-## What has inside
+![Screenshot - Home](assets/images/screenshots/home.png)
 
-- [Jekyll](https://jekyllrb.com/), [Sass](http://sass-lang.com/) ~[RSCSS](http://rscss.io/)~ and [SVG](https://www.w3.org/Graphics/SVG/)
-- Tests with [Travis](https://travis-ci.org/)
-- Google Speed: [98/100](https://developers.google.com/speed/pagespeed/insights/?url=http%3A%2F%2Fsergiokopplin.github.io%2Findigo%2F);
-- No JS. :sunglasses:
+![Screenshot - Blog](assets/images/screenshots/post.png)
 
-## Setup
+## Installation
 
-0. :star: to the project. :metal:
-2. Fork the project [Indigo](https://github.com/sergiokopplin/indigo/fork)
-3. Edit `_config.yml` with your data (check <a href="README.md#settings">settings</a> section)
-4. Write some posts :bowtie:
+### As a Jekyll theme gem (Jekyll >= 3.3)
 
-If you want to test locally on your machine, do the following steps also:
+If you are creating a new website or blog,
+please follow the commands below first:
 
-1. Install [Jekyll](http://jekyllrb.com), [NodeJS](https://nodejs.org/) and [Bundler](http://bundler.io/).
-2. Clone the forked repo on your machine
-3. Enter the cloned folder via terminal and run `bundle install`
-4. Then run `bundle exec jekyll serve --config _config.yml,_config-dev.yml`
-5. Open it in your browser: `http://localhost:4000`
-6. Test your app with `bundle exec htmlproofer ./_site`
+1. Install Jekyll and [Bunlder][Bunlder]
 
-## Settings
+       gem install jekyll bundler
 
-You must fill some informations on `_config.yml` to customize your site.
+2. Create a new Jekyll app
 
-```
-name: John Doe
-bio: 'A Man who travels the world eating noodles'
-picture: 'assets/images/profile.jpg'
-...
+       jekyll new jekyllapp
 
-and lot of other options, like width, projects, pages, read-time, tags, related posts, animations, multiple-authors, etc.
-```
+3. Enter the new directory
 
-## How To?
+       cd jekyllapp
 
-Check the [FAQ](./FAQ.md) if you have any doubt or problem.
+4. Then follow the instructions below like existing Jekyll app.
 
----
+Then for existing Jekyll apps,
 
-[MIT](http://kopplin.mit-license.org/) License © Sérgio Kopplin
+1. Install Bundler if haven't done so.
+
+       gem install bundler
+
+1. Remove Jekyll auto-generated default pages `404.html`, `about.md` and `index.md` or any your custom layouts or existing theme files.
+
+1. Remove the existing `Gemfile.lock`.
+
+1. Download the respository [here](https://github.com/yizeng/jekyll-theme-simple-texture/archive/master.zip)
+and locate `starter-kit` folder,
+or download `starter-kit` folder directly [here](https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/yizeng/jekyll-theme-simple-texture/tree/master/starter-kit).
+
+1. Put everything in the `starter-kit` in the root directory,
+i.e. `jekyllapp` in this example.
+
+1. Run `bundle install` to install dependencies.
+
+1. Run Jekyll with `bundle exec jekyll serve`
+
+1. Hack away at <http://localhost:4000>!
+
+### As a fork
+
+1. Fork the repo [here](https://github.com/yizeng/jekyll-theme-simple-texture#fork-destination-box)
+
+2. Clone the repo just forked.
+
+       git clone git@github.com:[YOUR_USERNAME]/jekyll-theme-simple-texture.git
+
+3. Delete `starter-kit` folder and `jekyll-theme-simple-texture.gemspec` file (they're for people installing via gem)
+
+4. Install Bundler if haven't done so.
+
+       gem install bundler
+
+5. Update the `Gemfile` to look like the following:
+
+   ```ruby
+   source "https://rubygems.org"
+
+   gem 'jekyll', '= 3.5.2' # locked in to be consistent GitHub Pages.
+
+   group :jekyll_plugins do
+     gem 'jekyll-feed'
+     gem 'jekyll-redirect-from'
+     gem 'jekyll-seo-tag'
+     gem 'jekyll-sitemap'
+   end
+   ```
+
+6. Run `bundle install` to install dependencies.
+
+7. Run Jekyll with `bundle exec jekyll serve`
+
+8. Hack away at <http://localhost:4000>!
+
+## Contributing
+
+Bug reports and pull requests are welcome on GitHub at <https://github.com/yizeng/jekyll-theme-simple-texture>. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+
+## Credits
+
+- [Jekyll][Jekyll]
+  + [jekyll-feed](https://github.com/jekyll/jekyll-feed)
+  + [jekyll-redirect-from](https://github.com/jekyll/jekyll-redirect-from)
+  + [jekyll-seo-tag](https://github.com/jekyll/jekyll-seo-tag)
+  + [jekyll-sitemap](https://github.com/jekyll/jekyll-sitemap)
+  + [Simple-Jekyll-Search](https://github.com/christian-fei/Simple-Jekyll-Search)
+  + [Jekyll-Bootstrap](http://jekyllbootstrap.com/)
+  + [theme-the-program](https://github.com/jekyllbootstrap/theme-the-program)
+
+- [Sass](http://sass-lang.com/)
+  + [Normalize.css](https://necolas.github.io/normalize.css/)
+  + [Animate.css](https://daneden.github.io/animate.css/)
+  + [Simple Icons](https://simpleicons.org/)
+  + [Noise Texture Generator](http://www.noisetexturegenerator.com/)
+- JavaScript
+  + [cdnjs](https://cdnjs.com/)
+  + [jQuery](https://jquery.com/)
+  + [fullPage.js](https://alvarotrigo.com/fullPage/)
+  + [pace.js](http://github.hubspot.com/pace/docs/welcome/)
+  + [Modernizr](https://modernizr.com/)
+  + [FancyBox](http://fancybox.net/)
+  + [unveil.js](http://luis-almeida.github.io/unveil/)
+- Fonts
+  + [Font Squirrel](https://www.fontsquirrel.com/)
+  + [Bitter](https://fonts.google.com/specimen/Bitter)
+  + [Junge](https://fonts.google.com/specimen/Junge)
+  + [Ubuntu Condensed](https://fonts.google.com/specimen/Ubuntu+Condensed)
+
+## License
+
+The theme is available as open source under the terms of the
+[MIT License](https://github.com/yizeng/jekyll-theme-simple-texture/blob/master/LICENSE).
+
+    MIT License
+
+    Copyright (c) 2017 Yi Zeng
+
+    Permission is hereby granted, free of charge, to any person obtaining a copy
+    of this software and associated documentation files (the "Software"), to deal
+    in the Software without restriction, including without limitation the rights
+    to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+    copies of the Software, and to permit persons to whom the Software is
+    furnished to do so, subject to the following conditions:
+
+    The above copyright notice and this permission notice shall be included in all
+    copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+    SOFTWARE.
+
+[Jekyll]: http://jekyllrb.com/
+[Bunlder]: http://bundler.io/
